@@ -1,4 +1,4 @@
-# frontend
+# meetingroom vue frontend
 
 ## Project setup
 ```
@@ -27,3 +27,17 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# ------------------------------------------------------
+# My Readme
+
+- Dependencies
+  - axios
+  - jquery
+  - bootstrap
+  - font-awesome
+  - vee-validate (v2.x)
+
+- "Invalid Host header" Issue
+  - Edit vue.config.js --> disableHostCheck: true
+  - vue.config.js --> API proxy

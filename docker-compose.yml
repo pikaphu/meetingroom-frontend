@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  my-app:
+    container_name: meetingroom-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '8081:8080'
+
+# docker-compose up -d --build
