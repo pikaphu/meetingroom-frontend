@@ -5,7 +5,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       "^/api": {
-        target: "http://localhost:7171"
+        target: "http://192.168.128.1:7171"
       }
     }
   }
