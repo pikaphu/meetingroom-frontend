@@ -14,7 +14,6 @@ const routes = [
     meta: {
       auth: true
     }
-    //lazy load// component: () => import(/* webpackChunkName: "Home" */ "../views/Home.vue")
   },
   {
     path: "/register",
@@ -25,6 +24,15 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: () =>
+      import(
+        /* webpackChunkName: "Test" */
+        "../views/Test.vue"
+      )
   }
 ];
 
