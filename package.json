@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:test": "vue-cli-service serve --mode test",
+    "serve:prod": "vue-cli-service serve --mode production",
+    "prod": "vue-cli-service build && serve -s public",
     "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode development",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
@@ -56,16 +60,14 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)"
-        ],
-        "env": {
-          "mocha": true
-        }
+    "overrides": [{
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)"
+      ],
+      "env": {
+        "mocha": true
       }
-    ]
+    }]
   },
   "postcss": {
     "plugins": {
