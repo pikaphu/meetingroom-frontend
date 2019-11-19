@@ -12,7 +12,8 @@ body {
 .card,
 .card-header,
 .form-control,
-.btn {
+.btn,
+.alert {
     border-radius: 0 !important;
 }
 
@@ -28,4 +29,19 @@ body {
 label {
     color: #6C757D;
     font-weight: 300;
+}
+
+.form-control,
+.alert {
+    font-weight: 300;
+}
+
+.alertify .ajs-header,
+.alertify .ajs-footer .ajs-buttons .ajs-button.ajs-ok {
+    color: #17A2B8;
+}
+
+.table th {
+    color: #525B62;
+    font-weight: 400;
 }

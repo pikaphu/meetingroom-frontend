@@ -11,6 +11,8 @@ import "bootstrap/dist/js/bootstrap";
 import "./assets/styles.css";
 import * as jquery from "jquery";
 
+// console.table(process.env) // check env config
+
 Vue.config.productionTip = false;
 Vue.prototype.jquery = jquery;
 Vue.use(VeeValidate);

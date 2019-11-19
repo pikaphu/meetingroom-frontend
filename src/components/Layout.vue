@@ -2,11 +2,12 @@
   <div class="layout">
     <Navbar />
     <div class="container">
+      <slot name="buttons"></slot>
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
           <slot></slot>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <Sidebar />
         </div>
       </div>
