@@ -13,7 +13,7 @@ export default new Vuex.Store({
   },
   actions: {
     get_user_login: ({ commit }) =>
-      Axios.post("api/account/getuserlogin").then(res => {
+      Axios.get("api/account/getuserlogin").then(res => {
         commit("set_user", res.data);
         // console.log(res.data);
       })
