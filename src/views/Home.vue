@@ -7,7 +7,10 @@
       </div>
     </Layout>
 
-    <div v-if="isAuth" style="margin:20px;">
+    <div
+      v-if="isAuth"
+      style="margin: 20px;position: absolute;left: 0;top: 25%;"
+    >
       <p>User ID: {{ userData.u_id }}</p>
       <p>User Login: {{ userData.u_username }}</p>
       <p>User Firstname: {{ userData.u_firstname }}</p>
