@@ -1,7 +1,13 @@
 <template>
   <div class="home">
-    <Navbar />
-    <div v-if="isAuth">
+    <!-- <Navbar /> -->
+    <Layout>
+      <div class="card">
+        <div class="card-body"></div>
+      </div>
+    </Layout>
+
+    <div v-if="isAuth" style="margin:20px;">
       <p>User ID: {{ userData.u_id }}</p>
       <p>User Login: {{ userData.u_username }}</p>
       <p>User Firstname: {{ userData.u_firstname }}</p>
@@ -12,11 +18,11 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
+import Layout from "../components/Layout.vue";
 export default {
   name: "home",
   components: {
-    Navbar
+    Layout
   },
   data() {
     return {
