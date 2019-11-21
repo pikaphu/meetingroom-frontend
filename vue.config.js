@@ -8,6 +8,7 @@ const backend_api = process.env.VUE_APP_API_URL || "http://localhost:7171";
 module.exports = {
   // options...
   devServer: {
+    host: "0.0.0.0", // fix self called
     disableHostCheck: true,
     proxy: {
       "/api": {
