@@ -4,6 +4,7 @@ services:
 
   vue:
     container_name: meetingroom-frontend
+    image: meetingroom-frontend-vue
     build:
       context: .
       dockerfile: Dockerfile
