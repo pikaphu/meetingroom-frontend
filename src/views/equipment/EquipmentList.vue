@@ -25,7 +25,9 @@
           </thead>
           <tbody>
             <tr v-for="item in equipments" :key="item.eq_id">
-              <td></td>
+              <td>
+                <img :alt="item.eq_name" :src="getImgUrl(item.eq_image)" />
+              </td>
               <td>{{ item.eq_name }}</td>
               <td>{{ item.eq_detail || "No Data." }}</td>
               <td>{{ item.eq_updated }}</td>
@@ -45,6 +47,15 @@
 import Layout from "@/components/Layout";
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {};
+  },
+  methods: {
+    getImgUrl(name) {
+      return `${process.env.VUE_APP_CONTENT_URL ||
+        "localhost"}/uploads/equipments/${name}`;
+    }
+  },
   computed: {
     ...mapState(["equipments"])
   },

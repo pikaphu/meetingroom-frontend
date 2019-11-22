@@ -16,7 +16,11 @@ export default new Vuex.Store({
   },
   actions: {
     get_user_login: ({ commit }) =>
-      Axios.get("api/account/getuserlogin").then(res => {
+      Axios.get("api/account/getuserlogin", {
+        headers: {
+          Authorization: process.env.VUE_APP_AUTH // for testing only | from .env files
+        }
+      }).then(res => {
         commit("set_user", res.data);
         // console.log(result.data);
       }),
@@ -27,7 +31,8 @@ export default new Vuex.Store({
           Authorization: process.env.VUE_APP_AUTH // for testing only | from .env files
         },
         params: {
-          page: 1
+          page: 1,
+          limit: 10
         }
       })
         .then(res => {

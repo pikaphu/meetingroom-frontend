@@ -2,7 +2,7 @@
 
 // default config var
 const servePort = process.env.SERVEPORT || process.env.npm_config_port || 8080; // serve web at port
-const backend_api = process.env.VUE_APP_API_URL || "http://localhost:7171";
+const backend_api = process.env.VUE_APP_API_URL || "http://localhost:3000";
 
 // vue config
 module.exports = {
