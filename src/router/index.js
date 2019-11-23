@@ -47,6 +47,7 @@ const routes = [
     path: "/test",
     name: "test",
     component: () =>
+      // lazyload
       import(
         /* webpackChunkName: "Test" */
         "../views/Test.vue"
