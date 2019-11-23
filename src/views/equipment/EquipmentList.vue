@@ -24,9 +24,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in equipments" :key="item.eq_id">
+            <tr v-for="item in equipments.result" :key="item.eq_id">
               <td>
-                <img :alt="item.eq_name" :src="getImgUrl(item.eq_image)" />
+                <div class="img-container">
+                  <img :alt="item.eq_name" :src="getImgUrl(item.eq_image)" />
+                </div>
               </td>
               <td>{{ item.eq_name }}</td>
               <td>{{ item.eq_detail || "No Data." }}</td>
@@ -38,6 +40,8 @@
             </tr>
           </tbody>
         </table>
+
+        <Pagination :data="equipments" @onPage="onPage($event)"></Pagination>
       </div>
     </div>
   </Layout>
@@ -45,25 +49,37 @@
 
 <script>
 import Layout from "@/components/Layout";
+import Pagination from "@/components/Pagination";
 import { mapState } from "vuex";
 export default {
+  components: {
+    Layout,
+    Pagination
+  },
   data() {
     return {};
+  },
+  created() {
+    // console.log("cookie:", document.cookie);
+    this.$store.dispatch("set_equipments"); // Fetch data from DB
+  },
+  computed: {
+    ...mapState(["equipments"])
   },
   methods: {
     getImgUrl(name) {
       return `${process.env.VUE_APP_CONTENT_URL ||
         "localhost"}/uploads/equipments/${name}`;
+    },
+    // Pagination
+    onPage(page) {
+      console.log(page);
+      this.page = page;
+      this.$store.dispatch("set_equipments", {
+        page: this.page,
+        ...this.search
+      });
     }
-  },
-  computed: {
-    ...mapState(["equipments"])
-  },
-  components: {
-    Layout
-  },
-  created() {
-    this.$store.dispatch("set_equipments");
   }
 };
 </script>
