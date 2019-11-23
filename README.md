@@ -31,6 +31,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # ------------------------------------------------------
 # My Readme
 
+- API
+  - For testing: I use Axios with proxy config in  vue.config.js, So I can shorten API url called and dynamic change host of API  
+  - For production: I created API module in services/  for easier readable, understanding, grouping, tracing and more flexible using with dynamic changing url on demand or config flag.  
+
 - Dependencies
   - axios
   - jquery

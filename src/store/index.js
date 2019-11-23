@@ -1,49 +1,27 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Axios from "axios";
+// import Axios from "axios";
+import { GetUserLogin, GetEquipmentData } from "../services/api";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    // objects | state store for longterm use
     user: null,
     equipments: []
   },
   mutations: {
-    set_user: (state, user_data) => (state.user = user_data),
-    set_equipments: (state, equipments_data) =>
+    // init objects | set state value from mutations action
+    set_user_data: (state, user_data) => (state.user = user_data),
+    set_equipments_data: (state, equipments_data) =>
       (state.equipments = equipments_data)
   },
   actions: {
-    get_user_login: ({ commit }) =>
-      Axios.get("api/account/getuserlogin", {
-        headers: {
-          Authorization: process.env.VUE_APP_AUTH // for testing only | from .env files
-        }
-      }).then(res => {
-        commit("set_user", res.data);
-        // console.log(result.data);
-      }),
+    get_user_login: async ({ commit }) =>
+      commit("set_user_data", await GetUserLogin()),
 
-    set_equipments: ({ commit }) => {
-      Axios.get("api/equipment", {
-        headers: {
-          Authorization: process.env.VUE_APP_AUTH // for testing only | from .env files
-        },
-        params: {
-          page: 1,
-          limit: 10
-        }
-      })
-        .then(res => {
-          console.log(res);
-          commit("set_equipments", res.data.result);
-        })
-        .catch(error => {
-          //console.log('ERROR:', error.response);
-          if (!error.response) return;
-          console.log("ERROR:", error.response.data.message);
-        });
-    }
-  }
+    set_equipments: async ({ commit }, filter) =>
+      commit("set_equipments_data", await GetEquipmentData(filter))
+  } // end action
 });
