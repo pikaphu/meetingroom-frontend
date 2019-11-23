@@ -40,7 +40,7 @@ export default {
   },
   created() {
     console.log("Store User:");
-    console.table(Object.entries(this.$store.state.user));
+    console.table(Object.entries(this.$store.state.user)); // just check $store value
     this.userData = this.$store.state.user;
   }
 };

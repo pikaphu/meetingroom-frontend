@@ -18,9 +18,9 @@
                   :class="{ 'is-invalid': errors.has('u_username') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">
-                  {{ errors.first("u_username") }}
-                </span>
+                <span class="invalid-feedback">{{
+                  errors.first("u_username")
+                }}</span>
               </div>
 
               <div class="form-group">
@@ -33,9 +33,9 @@
                   :class="{ 'is-invalid': errors.has('u_password') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">
-                  {{ errors.first("u_password") }}
-                </span>
+                <span class="invalid-feedback">{{
+                  errors.first("u_password")
+                }}</span>
               </div>
 
               <div v-if="errorMessage" class="alert alert-warning text-center">
@@ -85,7 +85,7 @@ export default {
         axios
           .post("api/account/login", this.form)
           .then(response => {
-            this.$router.push({ name: "home" });
+            this.$router.push({ name: "home" }); // redirect
           })
           .catch(err => (this.errorMessage = err.response.data.message));
       });
