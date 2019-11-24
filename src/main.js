@@ -10,11 +10,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import "./assets/styles.css";
 import * as jquery from "jquery";
+import * as alertify from "alertifyjs";
 
 // console.table(process.env) // check env config
 
 Vue.config.productionTip = false;
 Vue.prototype.jquery = jquery;
+Vue.prototype.alertify = alertify;
 Vue.use(VeeValidate);
 
 new Vue({
