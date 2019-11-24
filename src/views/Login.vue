@@ -18,9 +18,9 @@
                   :class="{ 'is-invalid': errors.has('u_username') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_username")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_username") }}
+                </span>
               </div>
 
               <div class="form-group">
@@ -33,9 +33,9 @@
                   :class="{ 'is-invalid': errors.has('u_password') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_password")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_password") }}
+                </span>
               </div>
 
               <div v-if="errorMessage" class="alert alert-warning text-center">
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { api } from "../services/api";
 export default {
   data() {
     return {
@@ -82,9 +82,10 @@ export default {
       /* eslint-disable no-unused-vars */
       this.$validator.validateAll().then(valid => {
         if (!valid) return;
-        axios
+        api
           .post("api/account/login", this.form)
           .then(response => {
+            console.log("Login Success:", response);
             this.$router.push({ name: "home" }); // redirect
           })
           .catch(err => (this.errorMessage = err.response.data.message));

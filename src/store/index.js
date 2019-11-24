@@ -1,7 +1,7 @@
+/* eslint-disable */
 import Vue from "vue";
 import Vuex from "vuex";
-// import Axios from "axios";
-import { GetUserLogin, GetEquipmentData } from "../services/api";
+import * as api from "../services/api";
 
 Vue.use(Vuex);
 
@@ -18,10 +18,14 @@ export default new Vuex.Store({
       (state.equipments = equipments_data)
   },
   actions: {
-    get_user_login: async ({ commit }) =>
-      commit("set_user_data", await GetUserLogin()),
+    get_user_login: async ({
+        commit
+      }) =>
+      commit("set_user_data", await api.GetUserLogin()),
 
-    set_equipments: async ({ commit }, filter) =>
-      commit("set_equipments_data", await GetEquipmentData(filter))
+    set_equipments: async ({
+        commit
+      }, filter) =>
+      commit("set_equipments_data", await api.GetEquipmentData(filter))
   } // end action
 });

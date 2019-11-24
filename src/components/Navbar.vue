@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import axios from "axios";
+import { api } from "../services/api";
 export default {
   name: "navbar",
   methods: {
     onLogout() {
       /* eslint-disable no-unused-vars */
-      axios
+      api
         .get("api/account/logout")
         .then(response => {
           this.$router.push({ name: "login" });

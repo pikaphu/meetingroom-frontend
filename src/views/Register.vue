@@ -13,14 +13,14 @@
                 <input
                   type="text"
                   name="u_username"
-                  v-validate="{ required: true, regex: /^[A-Za-z0-9]{6,15}$/ }"
+                  v-validate="{ required: true, regex: /^[A-Za-z0-9]{3,15}$/ }"
                   v-model.trim="form.u_username"
                   :class="{ 'is-invalid': errors.has('u_username') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_username")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_username") }}
+                </span>
               </div>
 
               <div class="form-group">
@@ -28,14 +28,14 @@
                 <input
                   type="password"
                   name="u_password"
-                  v-validate="{ required: true, regex: /^[A-Za-z0-9]{6,15}$/ }"
+                  v-validate="{ required: true, regex: /^[A-Za-z0-9]{3,15}$/ }"
                   v-model.trim="form.u_password"
                   :class="{ 'is-invalid': errors.has('u_password') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_password")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_password") }}
+                </span>
               </div>
 
               <div class="form-group">
@@ -48,9 +48,9 @@
                   :class="{ 'is-invalid': errors.has('u_firstname') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_firstname")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_firstname") }}
+                </span>
               </div>
 
               <div class="form-group">
@@ -63,9 +63,9 @@
                   :class="{ 'is-invalid': errors.has('u_lastname') }"
                   class="form-control"
                 />
-                <span class="invalid-feedback">{{
-                  errors.first("u_lastname")
-                }}</span>
+                <span class="invalid-feedback">
+                  {{ errors.first("u_lastname") }}
+                </span>
               </div>
 
               <div v-if="errorMessage" class="alert alert-warning text-center">
@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { api } from "../services/api";
 export default {
   data() {
     return {
@@ -113,7 +113,7 @@ export default {
     onSubmit() {
       this.$validator.validateAll().then(valid => {
         if (!valid) return;
-        axios
+        api
           .post("api/account/register", this.form)
           // eslint-disable-next-line
           .then(response => {
