@@ -36,10 +36,11 @@ export default {
     }
     // page: {
     //   type: Number,
-    //   required: false, // test
+    //   required: true,
     //   default: 1
     // }
   },
+  created() {},
   computed: {
     getPageItems() {
       const pages = [];

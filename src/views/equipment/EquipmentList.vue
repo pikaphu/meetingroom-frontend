@@ -8,9 +8,11 @@
         >Add Item</router-link
       >
     </div>
+
     <div class="card">
       <div class="card-body">
         <header class="mb-4">
+          <Search :types="search_types" @onSearch="onSearch($event)" />
           <h5><i class="fa fa-list-alt"></i> Equipment List</h5>
         </header>
         <table class="table">
@@ -23,7 +25,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-if="equipments != null">
             <tr v-for="item in equipments.result" :key="item.eq_id">
               <td>
                 <div class="img-container">
@@ -40,7 +42,7 @@
             </tr>
           </tbody>
         </table>
-
+        <!-- :page="page" this will raise "error please avoid mutating direct prop values on rendering" -->
         <Pagination :data="equipments" @onPage="onPage($event)"></Pagination>
       </div>
     </div>
@@ -49,15 +51,24 @@
 
 <script>
 import Layout from "@/components/Layout";
+import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
 import { mapState } from "vuex";
 export default {
   components: {
     Layout,
+    Search,
     Pagination
   },
   data() {
-    return {};
+    return {
+      page: 1,
+      search: {},
+      search_types: [
+        { name: "Name", value: "eq_name" },
+        { name: "Detail", value: "eq_detail" }
+      ]
+    };
   },
   created() {
     // console.log("cookie:", document.cookie);
@@ -75,6 +86,16 @@ export default {
     onPage(page) {
       console.log(page);
       this.page = page;
+      this.$store.dispatch("set_equipments", {
+        page: this.page,
+        ...this.search
+      });
+    },
+    // Filter
+    onSearch(search) {
+      console.log("Search:", search);
+      this.search = search;
+      this.page = 1;
       this.$store.dispatch("set_equipments", {
         page: this.page,
         ...this.search

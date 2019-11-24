@@ -22,16 +22,25 @@ export function GetUserLogin() {
 }
 
 // return as data (result:[], row:0)
-export function GetEquipmentData(filter) {
+export function GetEquipmentData(
+  filter = {
+    page: 1
+  }
+) {
+  // check params
+  console.log("Filter:", filter);
+
+  // default params rule
+  filter["page"] = filter["page"] || 1;
+  filter["limit"] = filter["limit"] || 5;
+
+  // return data
   return api
     .get("api/equipment", {
-      params: {
-        page: filter && filter.page ? filter.page : 1,
-        limit: filter && filter.limit ? filter.limit : 3
-      }
+      params: filter
     }) // Promise()
     .then(res => {
-      console.log(res);
+      console.log("Get Equip Data:", res);
       return res.data; // .result .rows
     })
     .catch(error => {
