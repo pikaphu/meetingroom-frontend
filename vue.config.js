@@ -1,7 +1,7 @@
 // vue.config.js
 
 // default config var
-const servePort = process.env.SERVEPORT || process.env.npm_config_port || 8080; // serve web at port
+const servePort = process.env.SERVE_PORT || process.env.npm_config_port || 8080; // serve web at port
 const backend_api = process.env.VUE_APP_API_URL || "http://localhost:3000";
 
 // vue config
@@ -17,8 +17,9 @@ module.exports = {
         // pathRewrite: { '^/api': '' }
       }
     },
-    port: servePort
-    //contentBase: './public',
+    port: servePort,
+    sockPort: process.env.SOCK_PORT || 8080,
+    contentBase: "./public"
     /*
     configureWebpack: config => {
       if (process.env.NODE_ENV === 'production') {
