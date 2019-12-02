@@ -119,7 +119,7 @@ export default {
         // ตรวจสอบว่าเป็น การแก้ไขหรือการเพิ่มใหม่
         const updateId = this.$router.currentRoute.query.id;
         const request = isNaN(updateId)
-          ? api.post("/api/equipment", this.form) // สร้างใหม่
+          ? api.post("/api/equipment/add", this.form) // สร้างใหม่
           : api.put(`/api/equipment/${updateId}`, this.form); // แก้ไข
         // ส่งข้อมูลไปหา Server
         request

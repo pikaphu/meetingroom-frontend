@@ -45,7 +45,7 @@ export function GetUserLogin() {
 export function GetEquipmentData(
   filter = {
     page: 1
-  }
+  } // default value
 ) {
   // check params
   console.log("Filter:", filter);
