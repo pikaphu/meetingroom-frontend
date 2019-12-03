@@ -36,8 +36,14 @@
               <td>{{ item.eq_detail || "No Data." }}</td>
               <td>{{ item.eq_updated }}</td>
               <td class="text-right">
-                <i class="pointer fa fa-edit text-info mr-2"></i>
-                <i class="pointer fa fa-trash text-danger"></i>
+                <i
+                  @click="onUpdate(item)"
+                  class="pointer fa fa-edit text-info mr-2"
+                ></i>
+                <i
+                  @click="onDelete(item)"
+                  class="pointer fa fa-trash text-danger"
+                ></i>
               </td>
             </tr>
           </tbody>
@@ -54,6 +60,7 @@ import Layout from "@/components/Layout";
 import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
 import { mapState } from "vuex";
+import { api } from "../../services/api";
 export default {
   components: {
     Layout,
@@ -82,13 +89,34 @@ export default {
       return `${process.env.VUE_APP_CONTENT_URL ||
         "localhost"}/uploads/equipments/${name}`;
     },
+    // Update an item
+    onUpdate(item) {
+      this.$router.push({ name: "equipment-form", query: { id: item.eq_id } });
+    },
+    // Delete an item
+    onDelete(item) {
+      this.alertify.confirm(
+        "Delete a data",
+        "Confirm, Do you want to delete this?",
+        () => {
+          console.log("OK");
+          api
+            .delete(`/api/equipment/${item.eq_id}`)
+            .then(() => this.$store.dispatch("set_equipments"))
+            .catch(error => this.alertify.error(error.response.data.message));
+        },
+        () => {
+          console.log("Cancel");
+        }
+      );
+    },
     // Pagination
     onPage(page) {
-      console.log(page);
+      console.log("page:", page);
       this.page = page;
       this.$store.dispatch("set_equipments", {
-        page: this.page,
-        ...this.search
+        page: this.page
+        //...this.search
       });
     },
     // Filter

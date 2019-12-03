@@ -115,7 +115,7 @@ export default {
       this.$validator.validateAll().then(valid => {
         if (!valid) return;
         if (this.jquery.trim(this.form.eq_image) == "")
-          return this.alertify.warning("กรุณาอัพโหลดภาพ");
+          return this.alertify.warning("Require to upload an image.");
         // ตรวจสอบว่าเป็น การแก้ไขหรือการเพิ่มใหม่
         const updateId = this.$router.currentRoute.query.id;
         const request = isNaN(updateId)
