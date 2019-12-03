@@ -11,9 +11,9 @@
         :key="item"
         :class="{ active: page === item }"
       >
-        <a @click.prevent="onPage(item)" class="page-link" href="#">{{
-          item
-        }}</a>
+        <a @click.prevent="onPage(item)" class="page-link" href="#">
+          {{ item }}
+        </a>
       </li>
 
       <li class="page-item" :class="{ disabled: page >= getPageItems.length }">
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       page: 1
+      //limit: 5
     };
   },
   props: {
@@ -45,9 +46,10 @@ export default {
     getPageItems() {
       const pages = [];
       if (this.data) {
-        if (this.data.result && this.data.rows) {
+        // console.log("Paginating:", this.data, this.data.limit);
+        if (this.data.limit && this.data.rows) {
           const rows = this.data.rows;
-          const limit = this.data.result.length;
+          const limit = this.data.limit; // this.data.result.length
           for (let index = 1; index <= Math.ceil(rows / limit); index++) {
             pages.push(index);
           }
