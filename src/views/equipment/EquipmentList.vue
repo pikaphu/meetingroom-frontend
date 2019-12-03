@@ -115,8 +115,8 @@ export default {
       console.log("page:", page);
       this.page = page;
       this.$store.dispatch("set_equipments", {
-        page: this.page
-        //...this.search
+        page: this.page,
+        ...this.search
       });
     },
     // Filter
